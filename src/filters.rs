@@ -42,7 +42,7 @@ pub struct IDRangeFilter {
 
 pub fn parse_duration(value: &str) -> Result<chrono::DateTime<chrono::Utc>> {
     if let Ok(dt) = humantime::parse_rfc3339_weak(value) {
-        return Ok(chrono::DateTime::from(dt))
+        return Ok(chrono::DateTime::from(dt));
     }
 
     let duration = humantime::parse_duration(value)?;

@@ -1,15 +1,18 @@
 mod filters;
 mod item;
-use tokio::io::AsyncWriteExt;
 use crate::filters::DateRangeFilter;
 use crate::item::Item;
 use anyhow::{Context, Result};
 use futures::{future, StreamExt};
 use indicatif::{ProgressBar, ProgressIterator, ProgressStyle};
 use structopt::StructOpt;
+use tokio::io::AsyncWriteExt;
 
 #[derive(Debug, StructOpt)]
-#[structopt(name = "hncat", about = "Grab Hacker News items from the API in parallel.")]
+#[structopt(
+    name = "hncat",
+    about = "Grab Hacker News items from the API in parallel."
+)]
 struct Opt {
     #[structopt(flatten)]
     date_filter: filters::DateRangeFilter,
@@ -41,7 +44,7 @@ async fn main() -> Result<()> {
         &client,
         "https://hacker-news.firebaseio.com/v0/maxitem.json".into(),
     )
-        .await?;
+    .await?;
 
     // Create a range
     let range = match options.id_filter {
@@ -62,7 +65,7 @@ async fn main() -> Result<()> {
             stop_id: None,
         } => 0..max_id,
     }
-        .rev();
+    .rev();
 
     let take_until_date = match (&options.date_filter, &options.since) {
         (
@@ -92,7 +95,7 @@ async fn main() -> Result<()> {
             .progress_chars("#>-"),
     );
 
-    let mut errors : i32 = 0;
+    let mut errors: i32 = 0;
 
     let mut stream = futures::stream::iter(range.progress_with(total_bar))
         .map(|id: u32| {
