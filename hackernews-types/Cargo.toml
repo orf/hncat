@@ -1,6 +1,6 @@
 [package]
 name = "hackernews-types"
-version = "0.1.2-alpha.0"
+version = "0.1.2"
 authors = ["Tom Forbes <tom@tomforb.es>"]
 edition = "2018"
 description = "Rust types representing items returned from the Hacker News API"
