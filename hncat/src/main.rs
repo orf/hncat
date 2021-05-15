@@ -1,9 +1,9 @@
 mod filters;
-mod item;
+
 use crate::filters::DateRangeFilter;
-use crate::item::Item;
 use anyhow::{Context, Result};
 use futures::{future, StreamExt};
+use hackernews_types::Item;
 use indicatif::{ProgressBar, ProgressIterator, ProgressStyle};
 use structopt::StructOpt;
 use tokio::io::AsyncWriteExt;
@@ -100,7 +100,7 @@ async fn main() -> Result<()> {
     let mut stream = futures::stream::iter(range.progress_with(total_bar))
         .map(|id: u32| {
             let url = format!("https://hacker-news.firebaseio.com/v0/item/{}.json", id);
-            get_json::<item::Item>(&client, url)
+            get_json::<Item>(&client, url)
         })
         .buffered(options.concurrency)
         .filter_map(|item| {

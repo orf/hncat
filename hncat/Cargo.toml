@@ -1,0 +1,25 @@
+[package]
+name = "hncat"
+version = "0.1.2-alpha.0"
+authors = ["Tom Forbes <tom@tomforb.es>"]
+edition = "2018"
+description = "Grab all Hacker News stores + comments, quickly."
+license = "MIT"
+repository = "https://github.com/orf/hncat"
+readme = "../README.md"
+
+[dependencies]
+anyhow = "1.0.40"
+async-channel = "1.6.1"
+chrono = { version = "0.4.19", features = ["serde"] }
+fdlimit = "0.2.1"
+futures = "0.3.14"
+humantime = "2.1.0"
+indicatif = "0.16.0"
+reqwest = { version = "0.11.3", features = ["json", "brotli", "trust-dns"] }
+serde = { version = "1.0" }
+serde_json = "1.0.64"
+structopt = "0.3.21"
+tokio = { version = "1.5.0", features = ["full"] }
+
+hackernews-types = { version = "0.1.0", path = "../hackernews-types" }
