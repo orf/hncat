@@ -1,6 +1,6 @@
 [package]
 name = "hncat"
-version = "0.1.2"
+version = "0.1.3-alpha.0"
 authors = ["Tom Forbes <tom@tomforb.es>"]
 edition = "2018"
 description = "Grab all Hacker News stores + comments, quickly."
