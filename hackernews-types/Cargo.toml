@@ -10,3 +10,7 @@ repository = "https://github.com/orf/hncat"
 [dependencies]
 chrono = { version = "0.4.19", features = ["serde"] }
 serde = { version = "1.0", features = ["derive"] }
+
+[dev-dependencies]
+matches = "0.1.8"
+serde_json = "1.0.64"
