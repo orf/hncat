@@ -453,7 +453,7 @@ dependencies = [
 
 [[package]]
 name = "hncat"
-version = "0.1.3-alpha.0"
+version = "0.1.3"
 dependencies = [
  "anyhow",
  "async-channel",
