@@ -28,7 +28,7 @@ struct Opt {
     limit: Option<usize>,
 
     /// Make this many concurrent requests
-    #[structopt(long, default_value = "200")]
+    #[structopt(long, default_value = "100")]
     concurrency: usize,
 }
 
@@ -84,7 +84,13 @@ async fn main() -> Result<()> {
             },
             filters::RelativeRangeFilter { since, .. },
         ) => since.as_ref(),
-        _ => unreachable!(),
+        (
+            filters::DateRangeFilter {
+                start_date: Some(_),
+                ..
+            },
+            filters::RelativeRangeFilter { since: Some(_), .. },
+        ) => todo!(),
     };
 
     let len = range.len();
